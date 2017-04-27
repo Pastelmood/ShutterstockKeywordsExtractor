@@ -2,6 +2,7 @@ import urllib.request
 import urllib.parse
 import os, sys
 
+
 def getSource(url):
     try:
         # now, with the below headers, we defined ourselves as a simpleton who is
@@ -34,6 +35,7 @@ def getKeyword(sourceCode):
     sourceCode = sourceCode[:-15]
 
     return sourceCode
+
 
 def callNotePad(text):
     filename = 'temp.txt'
