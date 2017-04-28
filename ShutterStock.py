@@ -18,8 +18,7 @@ def getSource(url):
 
     except Exception as e:
         print(str(e))
-        return ""
-
+        return ''
 
 def getKeyword(sourceCode):
     sourceCode = sourceCode[sourceCode.find('<a href="/search/'):]
@@ -49,15 +48,15 @@ def callNotePad(text):
 
 print()
 print('+-----------------------------------+')
-print('+--ShutterStock Keywords Extractor--+')
+print('+  ShutterStock Keywords Extractor  +')
 print('+-----------------------------------+')
 print()
 print('Press q for exit')
 print()
 
-x = 1
+
 try:
-    while x == 1:
+    while True:
         url = input('[ShutterStock] > ')
 
         if url == 'q':
@@ -65,7 +64,10 @@ try:
 
         if url[:5] == 'https':
             sourceCode = getSource(url)
-            keyWords = getKeyword(sourceCode)
-            callNotePad(keyWords)
+            if len(sourceCode) > 0:
+                keyWords = getKeyword(sourceCode)
+                if len(keyWords) > 0:
+                    callNotePad(keyWords)
+
 except Exception as e:
     sys.exit()
