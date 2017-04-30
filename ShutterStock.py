@@ -36,10 +36,33 @@ def getKeyword(sourceCode):
     return sourceCode
 
 
-def callNotePad(text):
+def getDescription(sourceCode):
+    description = sourceCode
+    description = description.replace(description[:description.find('<meta name="description" content="') + 34], '')
+    description = description[:description.find(' -')]
+
+    return description
+
+
+def getNumberOfKeywords(keyWords):
+    sumKeywords = keyWords.count(',') + 1
+
+    return sumKeywords
+
+
+def callNotePad(description, keywords):
+
+    sumKeywords = getNumberOfKeywords(keywords)
+    
+    content = '[Description]\n'
+    content = content + description + '\n\n'
+    content = content + '[Keywords]\n'
+    content = content + keywords + '\n\n'
+    content = content + 'Keywords total = ' + str(sumKeywords) + ' words.'
+    
     filename = 'temp.txt'
     saveFile = open(filename, 'w')
-    saveFile.write(text)
+    saveFile.write(content)
     saveFile.close()
 
     osCommandString = "notepad.exe " + filename
@@ -57,7 +80,7 @@ print()
 
 try:
     while True:
-        url = input('[ShutterStock] > ')
+        url = input('[ShutterStock URL] > ')
 
         if url == 'q':
             sys.exit()
@@ -66,8 +89,10 @@ try:
             sourceCode = getSource(url)
             if len(sourceCode) > 0:
                 keyWords = getKeyword(sourceCode)
+                description = getDescription(sourceCode)
                 if len(keyWords) > 0:
-                    callNotePad(keyWords)
+                    callNotePad(description, keyWords)
 
 except Exception as e:
+    print(str(e))
     sys.exit()
