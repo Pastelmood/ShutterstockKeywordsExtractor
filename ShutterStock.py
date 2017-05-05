@@ -53,8 +53,10 @@ def getNumberOfKeywords(keyWords):
 def callNotePad(description, keywords):
 
     sumKeywords = getNumberOfKeywords(keywords)
-    
-    content = '[Description]\n'
+
+    content = '[Title]\n'
+    content = content + 'Add title here.\n\n'
+    content = content + '[Description]\n'
     content = content + description + '\n\n'
     content = content + '[Keywords]\n'
     content = content + keywords + '\n\n'
