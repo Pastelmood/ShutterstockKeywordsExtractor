@@ -1,7 +1,7 @@
 import urllib.request
 import urllib.parse
 import os, sys
-
+import imp
 
 def getSource(url):
     try:
@@ -70,6 +70,9 @@ def callNotePad(description, keywords):
     osCommandString = "notepad.exe " + filename
     os.system(osCommandString)
 
+# Start Program
+
+mLog = imp.load_compiled("mLog", "lib/Log.pyc")
 
 print()
 print('+-----------------------------------+')
@@ -93,6 +96,7 @@ try:
                 keyWords = getKeyword(sourceCode)
                 description = getDescription(sourceCode)
                 if len(keyWords) > 0:
+                    mLog.writeLog(url)
                     callNotePad(description, keyWords)
 
 except Exception as e:
