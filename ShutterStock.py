@@ -90,6 +90,9 @@ try:
         if url == 'q':
             sys.exit()
 
+        if url == 'history':
+            mLog.history()
+
         if url[:5] == 'https':
             sourceCode = getSource(url)
             if len(sourceCode) > 0:
@@ -98,6 +101,7 @@ try:
                 if len(keyWords) > 0:
                     mLog.writeLog(url)
                     callNotePad(description, keyWords)
+                    os.remove('temp.txt')
 
 except Exception as e:
     print(str(e))
