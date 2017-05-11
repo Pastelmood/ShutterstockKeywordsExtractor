@@ -10,5 +10,15 @@
 2. Install Pywin32
 3. Install pyrebase - Open CMD and run `pip install 
 
+### Usage
+**Paste URL**
+Return keywords
 
+**q**
+Quit Program
 
+**history**
+Show URL history
+
+**count**
+Return total keywords from clipboard, Copy keyword first.
