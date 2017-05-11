@@ -2,6 +2,7 @@ import urllib.request
 import urllib.parse
 import os, sys
 import imp
+import win32clipboard
 
 def getSource(url):
     try:
@@ -70,6 +71,14 @@ def callNotePad(description, keywords):
     osCommandString = "notepad.exe " + filename
     os.system(osCommandString)
 
+def countFromClipboard():
+    win32clipboard.OpenClipboard()
+    data = win32clipboard.GetClipboardData()
+    win32clipboard.CloseClipboard()
+
+    print('\nTotal Keywords = {0}\n'.format(data.count(',') + 1))
+
+
 # Start Program
 
 mLog = imp.load_compiled("mLog", "lib/Log.pyc")
@@ -92,6 +101,9 @@ try:
 
         if url == 'history':
             mLog.history()
+
+        if url == 'count':
+            countFromClipboard()
 
         if url[:5] == 'https':
             sourceCode = getSource(url)
