@@ -8,7 +8,7 @@
 ### Install
 1. Install Python
 2. Install Pywin32
-3. Install pyrebase - Open CMD and run `pip install 
+3. Install pyrebase - Open CMD and run `pip install`
 
 ### Usage
 **Paste URL** : Return keywords
